@@ -3,6 +3,7 @@ import Card from "./Card";
 import FilterSection from "./FilterSection";
 import { Link } from "react-router-dom";
 // import MyMap from "./Map";
+import PropTypes from "prop-types";
 
 const TaskSection = ({
   originalData,
@@ -274,8 +275,9 @@ const TaskSection = ({
         </div>
 
         <div className="rounded-xl shadow mt-10">
-          {filteredData?.length > 0 ? (
-            filteredData.map((item, idx) => (
+          {console.log(originalData)}
+          {originalData?.length > 0 ? (
+            originalData.map((item, idx) => (
               <Link key={idx} to={`/browse-tasks/${item?._id}`}>
                 <Card key={idx} item={item} />
               </Link>
@@ -325,3 +327,10 @@ const TaskSection = ({
 };
 
 export default TaskSection;
+
+TaskSection.propTypes = {
+  handleSearchSubmit: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  filter: PropTypes.object.isRequired,
+  originalData: PropTypes.array.isRequired,
+};

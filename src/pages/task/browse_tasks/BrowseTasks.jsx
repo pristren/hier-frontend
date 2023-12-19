@@ -1,7 +1,8 @@
 import FilterSection from "@/components/tasks/FilterSection";
 import TaskSection from "@/components/tasks/TaskSection";
 import { taskData } from "@/helpers/tasks_data/TaskData";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function BrowseTasks() {
   const [filter, setFilter] = useState({
@@ -20,6 +21,11 @@ export default function BrowseTasks() {
   };
 
   const [originalData, setOriginalData] = useState(taskData);
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v1/tasks").then((res) => {
+      setOriginalData(res?.data?.tasks);
+    });
+  }, []);
   return (
     <div>
       <div className="max-w-full">
