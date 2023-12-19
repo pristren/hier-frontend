@@ -129,10 +129,10 @@ export default function CreateTask() {
       what: inputData?.what,
       who: inputData?.who,
       where: inputData?.where,
-      when: inputData?.when || "",
+      when: date || "",
       date: inputData?.date,
       details: inputData?.details,
-      budget: inputData?.budget,
+      budget: inputData?.budget * 1,
       aiQuisions: [
         {
           question: aiQuisions[0] || "",
@@ -166,7 +166,7 @@ export default function CreateTask() {
       navigate("/");
     }
   };
-
+  console.log(inputData);
   return (
     <>
       {isLoading && (
@@ -647,7 +647,7 @@ export default function CreateTask() {
                       onChange={handleInputChange}
                       value={inputData?.budget}
                       name="budget"
-                      type="text"
+                      type="number"
                       className="w-full bg-[#F4F8FD] py-3 md:py-5 px-[18px] rounded-2xl outline-none border border-[#F4F8FD] focus:border-[#E78C3B]"
                     />
                   </div>
@@ -983,7 +983,7 @@ export default function CreateTask() {
                           onChange={handleInputChange}
                           value={inputData?.budget}
                           name="budget"
-                          type="text"
+                          type="number"
                           className="w-full bg-[#F4F8FD] py-3 md:py-5 px-[18px] rounded-2xl outline-none border border-[#F4F8FD] focus:border-[#E78C3B]"
                         />
                       </div>
