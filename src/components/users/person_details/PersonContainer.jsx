@@ -4,6 +4,10 @@ import verifiedIcon from "../../../assets/icons/verified.svg";
 import premiumIcon from "../../../assets/icons/premium.svg";
 import locationIcon from "../../../assets/icons/location.svg";
 import profileIcon from "../../../assets/icons/profile.svg";
+import clockIcon from "../../../assets/icons/clock.svg";
+import flagIcon from "../../../assets/icons/flag.svg";
+import infoIcon from "../../../assets/icons/info.svg";
+import starIcon from "../../../assets/icons/star.svg";
 
 const PersonContainer = () => {
   const [state, setState] = useState("tasker");
@@ -67,16 +71,11 @@ const PersonContainer = () => {
           </div>
           <div className="w-full flex flex-col gap-y-2.5">
             <div className="flex items-center gap-1.5">
-              <img
-                src={"/icons/clock.svg"}
-                alt="clock"
-                width={16}
-                height={16}
-              />
+              <img src={clockIcon} alt="clock" width={16} height={16} />
               <p className="text-primary text-base">Activity: 2 hours ago</p>
             </div>
             <div className="flex items-center gap-1.5">
-              <img src={"/icons/flag.svg"} alt="flag" width={16} height={16} />
+              <img src={flagIcon} alt="flag" width={16} height={16} />
               <p className="text-primary text-base">Report this member</p>
             </div>
           </div>
@@ -119,22 +118,12 @@ const PersonContainer = () => {
                   <h1 className="text-primary text-sm font-clash font-medium">
                     Completion rate
                   </h1>
-                  <img
-                    src={"/icons/info.svg"}
-                    alt="info"
-                    width={14}
-                    height={14}
-                  />
+                  <img src={infoIcon} alt="info" width={14} height={14} />
                 </div>
                 <p className="text-xs text-[#213F61B2]">184 tasks</p>
               </div>
               <div className="flex items-center gap-2 pt-[14px]">
-                <img
-                  src={"/icons/star.svg"}
-                  alt="star"
-                  width={35}
-                  height={35}
-                />
+                <img src={starIcon} alt="star" width={35} height={35} />
                 <h1 className="text-primary text-2xl font-clash font-semibold pt-1">
                   4.6
                 </h1>
@@ -146,12 +135,7 @@ const PersonContainer = () => {
                   <h1 className="text-primary text-sm font-clash font-medium">
                     overall rating
                   </h1>
-                  <img
-                    src={"/icons/info.svg"}
-                    alt="info"
-                    width={14}
-                    height={14}
-                  />
+                  <img src={infoIcon} alt="info" width={14} height={14} />
                 </div>
                 <p className="text-xs text-[#213F61B2]">156 rating</p>
               </div>
@@ -168,22 +152,12 @@ const PersonContainer = () => {
                   <h1 className="text-primary text-sm font-clash font-medium">
                     Completion rate
                   </h1>
-                  <img
-                    src={"/icons/info.svg"}
-                    alt="info"
-                    width={14}
-                    height={14}
-                  />
+                  <img src={infoIcon} alt="info" width={14} height={14} />
                 </div>
                 <p className="text-xs text-[#213F61B2]">154 tasks</p>
               </div>
               <div className="flex items-center gap-2 pt-[14px]">
-                <img
-                  src={"/icons/star.svg"}
-                  alt="star"
-                  width={35}
-                  height={35}
-                />
+                <img src={starIcon} alt="star" width={35} height={35} />
                 <h1 className="text-primary text-2xl font-clash font-semibold pt-1">
                   4.8
                 </h1>
@@ -195,12 +169,7 @@ const PersonContainer = () => {
                   <h1 className="text-primary text-sm font-clash font-medium">
                     overall rating
                   </h1>
-                  <img
-                    src={"/icons/info.svg"}
-                    alt="info"
-                    width={14}
-                    height={14}
-                  />
+                  <img src={infoIcon} alt="info" width={14} height={14} />
                 </div>
                 <p className="text-xs text-[#213F61B2]">13 rating</p>
               </div>
