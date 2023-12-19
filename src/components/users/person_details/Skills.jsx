@@ -26,7 +26,7 @@ const skills = [
 const Skills = () => {
   return (
     <div className="w-full ">
-      <h1 className="text-primary font-semibold font-clash text-2xl pb-4 md:pb-6 border-b border-[#213f610d] ">
+      <h1 className="text-secondary font-semibold font-clash text-2xl pb-4 md:pb-6 border-b border-[#213f610d] ">
         Skills
       </h1>
 
@@ -36,7 +36,7 @@ const Skills = () => {
             className="w-full h-fit bg-[#F4F8FD] rounded-[24px] p-4 md:p-6 lg:p-7"
             key={skill?.id}
           >
-            <h1 className="text-lg md:text-xl font-clash font-medium text-primary">
+            <h1 className="text-lg md:text-xl font-clash font-medium text-secondary">
               {skill?.title}:
             </h1>
             <div className="mt-[23px] w-full flex items-center gap-3 flex-wrap">

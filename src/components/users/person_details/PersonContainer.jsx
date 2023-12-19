@@ -28,7 +28,7 @@ const PersonContainer = () => {
         <div className="">
           <div className="w-full sm:flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <h1 className="text-primary font-semibold font-clash text-2xl md:text-3xl">
+              <h1 className="text-secondary font-semibold font-clash text-2xl md:text-3xl">
                 Md Manjurul Islam
               </h1>
               <img
@@ -51,7 +51,7 @@ const PersonContainer = () => {
             </div>
           </div>
           <div className="w-full pb-2.5 lg:pb-5">
-            <h1 className="text-xl font-sans text-primary font-medium">
+            <h1 className="text-xl font-sans text-secondary font-medium">
               UI/UX Designer
             </h1>
           </div>
@@ -60,23 +60,23 @@ const PersonContainer = () => {
           <div className="w-full flex flex-col gap-y-2.5">
             <div className="flex items-center gap-1.5">
               <img src={locationIcon} alt="Location" width={16} height={16} />
-              <p className="text-primary text-base">
+              <p className="text-secondary text-base">
                 Satkhira, Khulna, Bangladesh
               </p>
             </div>
             <div className="flex items-center gap-1.5">
               <img src={profileIcon} alt="profile" width={16} height={16} />
-              <p className="text-primary text-base">Joined: 20th oct 2022</p>
+              <p className="text-secondary text-base">Joined: 20th oct 2022</p>
             </div>
           </div>
           <div className="w-full flex flex-col gap-y-2.5">
             <div className="flex items-center gap-1.5">
               <img src={clockIcon} alt="clock" width={16} height={16} />
-              <p className="text-primary text-base">Activity: 2 hours ago</p>
+              <p className="text-secondary text-base">Activity: 2 hours ago</p>
             </div>
             <div className="flex items-center gap-1.5">
               <img src={flagIcon} alt="flag" width={16} height={16} />
-              <p className="text-primary text-base">Report this member</p>
+              <p className="text-secondary text-base">Report this member</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const PersonContainer = () => {
       {/* rating part */}
       <div className="w-fit grow bg-[#F4F8FD] rounded-[24px] p-4 md:p-6 flex flex-col justify-between order-2 xl:order-3">
         <div className="w-full flex justify-between items-center">
-          <h1 className="text-primary font-semibold font-clash text-2xl md:text-3xl">
+          <h1 className="text-secondary font-semibold font-clash text-2xl md:text-3xl">
             Rating
           </h1>
           <div className="px-[6px] py-[5px] rounded-full w-fit flex items-center gap-1">
@@ -115,7 +115,7 @@ const PersonContainer = () => {
             <div className="p-4 w-full h-full bg-white rounded-[16px] flex flex-col justify-between">
               <div className="">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-primary text-sm font-clash font-medium">
+                  <h1 className="text-secondary text-sm font-clash font-medium">
                     Completion rate
                   </h1>
                   <img src={infoIcon} alt="info" width={14} height={14} />
@@ -124,7 +124,7 @@ const PersonContainer = () => {
               </div>
               <div className="flex items-center gap-2 pt-[14px]">
                 <img src={starIcon} alt="star" width={35} height={35} />
-                <h1 className="text-primary text-2xl font-clash font-semibold pt-1">
+                <h1 className="text-secondary text-2xl font-clash font-semibold pt-1">
                   4.6
                 </h1>
               </div>
@@ -132,7 +132,7 @@ const PersonContainer = () => {
             <div className="p-4 w-full h-full bg-white rounded-[16px] flex flex-col justify-between">
               <div className="">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-primary text-sm font-clash font-medium">
+                  <h1 className="text-secondary text-sm font-clash font-medium">
                     overall rating
                   </h1>
                   <img src={infoIcon} alt="info" width={14} height={14} />
@@ -149,7 +149,7 @@ const PersonContainer = () => {
             <div className="p-4 w-full h-full bg-white rounded-[16px] flex flex-col justify-between">
               <div className="">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-primary text-sm font-clash font-medium">
+                  <h1 className="text-secondary text-sm font-clash font-medium">
                     Completion rate
                   </h1>
                   <img src={infoIcon} alt="info" width={14} height={14} />
@@ -158,7 +158,7 @@ const PersonContainer = () => {
               </div>
               <div className="flex items-center gap-2 pt-[14px]">
                 <img src={starIcon} alt="star" width={35} height={35} />
-                <h1 className="text-primary text-2xl font-clash font-semibold pt-1">
+                <h1 className="text-secondary text-2xl font-clash font-semibold pt-1">
                   4.8
                 </h1>
               </div>
@@ -166,7 +166,7 @@ const PersonContainer = () => {
             <div className="p-4 w-full h-full bg-white rounded-[16px] flex flex-col justify-between">
               <div className="">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-primary text-sm font-clash font-medium">
+                  <h1 className="text-secondary text-sm font-clash font-medium">
                     overall rating
                   </h1>
                   <img src={infoIcon} alt="info" width={14} height={14} />

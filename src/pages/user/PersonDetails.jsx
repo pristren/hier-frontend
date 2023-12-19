@@ -1,6 +1,9 @@
-import PersonContainer from "@/components/users/person_details/PersonContainer";
 import React from "react";
+import PersonContainer from "@/components/users/person_details/PersonContainer";
 import banner from "../../assets/bg-pdetails.png";
+import About from "@/components/users/person_details/About";
+import Skills from "@/components/users/person_details/Skills";
+import Reviews from "@/components/users/person_details/Reviews";
 1;
 const PersonDetails = () => {
   return (
@@ -17,6 +20,9 @@ const PersonDetails = () => {
           />
         </div>
         <PersonContainer />
+        <About />
+        <Skills />
+        <Reviews />
         {/* <About />
         <Skills />
         <Reviews /> */}

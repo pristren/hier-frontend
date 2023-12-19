@@ -1,6 +1,6 @@
-"use client";
-import Image from "next/image";
 import React, { useState } from "react";
+
+import profileImg from "../../../assets/profileImg/profile1.svg";
 
 const Reviews = () => {
   const [state, setState] = useState("tasker");
@@ -8,15 +8,15 @@ const Reviews = () => {
   return (
     <div className="py-[30px] md:py-[45px] lg:py-[60px] w-full">
       <div className="w-full flex flex-wrap items-center justify-between pb-4 md:pb-6 border-b border-[#213f610d]">
-        <h1 className="text-primary font-semibold font-clash text-2xl">
+        <h1 className="text-secondary font-semibold font-clash text-2xl">
           Reviews
         </h1>
         <div className="px-[6px] py-[5px] rounded-full w-fit flex items-center gap-1">
           <button
             className={`${
               state === "tasker"
-                ? "bg-primary text-white"
-                : "bg-white text-secondary"
+                ? "bg-secondary text-white"
+                : "bg-white text-secondary border"
             } rounded-[6px] text-xs py-[6px] px-4 font-clash`}
             onClick={() => setState("tasker")}
           >
@@ -25,17 +25,21 @@ const Reviews = () => {
           <button
             className={`${
               state === "poster"
-                ? "bg-primary text-white"
-                : "bg-white text-secondary"
+                ? "bg-secondary text-white"
+                : "bg-white text-secondary border"
             } rounded-[6px] text-xs py-[6px] px-4 font-clash`}
             onClick={() => setState("poster")}
           >
             Poster
           </button>
         </div>
-        <select className="w-fit h-fit rounded-[6px] bg-primary text-white min-w-[100px] px-3 py-1.5 outline-none text-xs font-medium">
-          <option value="1">Most recent</option>
-          <option value="1">Newest</option>
+        <select className="w-fit h-fit rounded-[6px] bg-secondary text-white min-w-[100px] px-3 py-1.5 outline-none text-xs font-medium">
+          <option className="bg-white text-secondary" value="1">
+            Most recent
+          </option>
+          <option className="bg-white text-secondary" value="1">
+            Newest
+          </option>
         </select>
       </div>
       {/* single review container */}
@@ -48,15 +52,15 @@ const Reviews = () => {
             >
               <div className="w-full flex items-center justify-between">
                 <div className="w-fit flex items-center gap-2.5">
-                  <Image
-                    src={"/profileImg/profile1.svg"}
+                  <img
+                    src={profileImg}
                     alt="profile pic"
                     width={100}
                     height={70}
                     className="w-[44px] h-auto rounded-[50%]"
                   />
                   <div className="w-fit">
-                    <h1 className="text-primary font-clash font-semibold text-lg md:text-xl">
+                    <h1 className="text-secondary font-clash font-semibold text-lg md:text-xl">
                       Eleanor Pena
                     </h1>
                     <p className="text-[#213F61CC] text-sm ">2 hours ago</p>
@@ -89,7 +93,7 @@ const Reviews = () => {
                   </svg>
                 </div>
               </div>
-              <div className="mt-4 md:mt-6 w-full text-primary text-base font-sans">
+              <div className="mt-4 md:mt-6 w-full text-secondary text-base font-sans">
                 <p>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
@@ -112,15 +116,15 @@ const Reviews = () => {
             >
               <div className="w-full flex items-center justify-between">
                 <div className="w-fit flex items-center gap-2.5">
-                  <Image
-                    src={"/profileImg/profile1.svg"}
+                  <img
+                    src={profileImg}
                     alt="profile pic"
                     width={100}
                     height={70}
                     className="w-[44px] h-auto rounded-[50%]"
                   />
                   <div className="w-fit">
-                    <h1 className="text-primary font-clash font-semibold text-lg md:text-xl">
+                    <h1 className="text-secondary font-clash font-semibold text-lg md:text-xl">
                       Taha Zein
                     </h1>
                     <p className="text-[#213F61CC] text-sm ">5 hours ago</p>
@@ -153,7 +157,7 @@ const Reviews = () => {
                   </svg>
                 </div>
               </div>
-              <div className="mt-4 md:mt-6 w-full text-primary text-base font-sans">
+              <div className="mt-4 md:mt-6 w-full text-secondary text-base font-sans">
                 <p>
                   It is From Poster a long established fact that a reader will
                   be distracted by the readable content of a page when looking

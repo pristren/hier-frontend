@@ -3,10 +3,10 @@ import React from "react";
 const About = () => {
   return (
     <div className="w-full h-full rounded-[24px] p-5 md:p-7 bg-[#F4F8FD]">
-      <h1 className="text-primary text-xl md:text-2xl font-semibold font-clash pb-4 md:pb-7 border-b ">
+      <h1 className="text-secondary text-xl md:text-2xl font-semibold font-clash pb-4 md:pb-7 border-b ">
         About
       </h1>
-      <div className="w-full h-full pt-4 md:pt-7 font-sans text-primary text-base leading-7">
+      <div className="w-full h-full pt-4 md:pt-7 font-sans text-secondary text-base leading-7">
         <p className="leading-7">
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
