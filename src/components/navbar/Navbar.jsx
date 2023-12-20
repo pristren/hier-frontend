@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserNav } from "./User_Nav";
+import { useDispatch, useSelector } from "react-redux";
+import { userLoggedIn, userLoggedOut } from "@/features/auth/authSlice";
+import { BadgePlus, PenSquare } from "lucide-react";
 
 export default function Navbar() {
+  const { accessToken } = useSelector((state) => state.auth);
+  // console.log(accessToken);
+  const dispatch = useDispatch();
+  const getLoggedinUser = () => {
+    const user = sessionStorage.getItem("authUser");
+    if (!user) {
+      return null;
+    } else {
+      return JSON.parse(user);
+    }
+  };
+  useEffect(() => {
+    const user = sessionStorage.getItem("authUser");
+    if (user) {
+      const userData = JSON.parse(user);
+      dispatch(
+        userLoggedIn({
+          accessToken: userData.accessToken,
+          user: userData.user,
+        })
+      );
+    }
+  }, [dispatch]);
+
   return (
     <nav className="p-4 shadow-sm bg-[#213F61]">
       <div className="container mx-auto flex justify-between items-center">
@@ -54,25 +82,38 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="hidden lg:flex">
-          <div className="items-start self-stretch flex gap-2.5 max-md:justify-center">
-            <Link
-              to="/signin"
-              className="text-white text-base font-medium self-center my-auto"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="/signup"
-              className="text-orange-400 text-base font-medium self-stretch whitespace-nowrap justify-center items-center bg-orange-400 bg-opacity-10 w-[170px] max-w-full px-5 py-2.5 rounded-[500px]"
-            >
-              Become a tasker
-            </Link>
-            <Link to={"/create-task"}>
-              <button className="text-white text-base font-bold self-stretch whitespace-nowrap justify-center items-center bg-orange-400 w-[170px] max-w-full pl-11 pr-10 py-2.5 rounded-[50px] max-md:px-5">
-                Post a task
-              </button>
-            </Link>
+        <div className="hidden lg:flex ">
+          <div className="items-center  flex gap-4 max-md:justify-center">
+            {!accessToken && (
+              <Link
+                to="/signin"
+                className="text-white text-base font-medium self-center my-auto"
+              >
+                Sign in
+              </Link>
+            )}
+            {!accessToken && (
+              <Link
+                to="/signup"
+                className="text-orange-400 text-base font-medium  whitespace-nowrap justify-center items-center bg-orange-400 bg-opacity-10 w-[170px] max-w-full px-5 py-2.5 rounded-[500px]"
+              >
+                Become a tasker
+              </Link>
+            )}
+            {accessToken ? (
+              <Link to={"/create-task"}>
+                <button className="text-white text-base font-bold  whitespace-nowrap justify-center items-center   max-w-full p-4  ">
+                  <PenSquare />
+                </button>
+              </Link>
+            ) : (
+              <Link to={"/create-task"}>
+                <button className="text-white text-base font-bold  whitespace-nowrap justify-center items-center   max-w-full px-5 py-2 bg-orange-400 rounded-[50px] ">
+                  Post A Task
+                </button>
+              </Link>
+            )}
+            {accessToken && <UserNav />}
           </div>
         </div>
         <div className="md:hidden">

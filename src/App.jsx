@@ -8,6 +8,7 @@ import AuthProtected from "./routes/PrivateRoute";
 import BrowseTasks from "./pages/task/browse_tasks/BrowseTasks";
 import SingleTask from "./pages/task/single_task/SingleTask";
 import PersonDetails from "./pages/user/PersonDetails";
+import MyOffers from "./pages/account/my_offers/MyOffers";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             element={<Navigate to={"/person_details/:id"} />}
           />
           <Route path="/person_details/:id" element={<PersonDetails />} />
+          <Route path="/account/my_offers" element={<MyOffers />} />
         </Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />

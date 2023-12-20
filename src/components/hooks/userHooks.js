@@ -12,15 +12,13 @@ const getLoggedinUser = () => {
 };
 
 const useProfile = () => {
-  // const [userProfile, setUserProfile] = useState(userProfileSession);
-  const userProfileSession = getLoggedinUser();
-
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const userProfileSession = getLoggedinUser();
+
     if (userProfileSession) {
-      // setUserProfile(JSON.parse(userProfile));
       dispatch(
         userLoggedIn({
           accessToken: userProfileSession.accessToken,
