@@ -5,7 +5,18 @@ import User from "../../assets/logo/user.svg";
 import PropTypes from "prop-types";
 
 const Card = ({ item }) => {
-  const { _id, what, when, where, who, details, budget, createdAt } = item;
+  const {
+    _id,
+    what,
+    when,
+    where,
+    who,
+    details,
+    budget,
+    createdAt,
+    task_status,
+    questions,
+  } = item;
   return (
     <div className="p-10 border-b-2">
       <div className="w-full flex self-stretch items-start flex-[0_0_auto] justify-between relative">
@@ -23,7 +34,7 @@ const Card = ({ item }) => {
         <div className="inline-flex items-start gap-[10px] flex-[0_0_auto] relative">
           <img className="w-5 h-5 relative" alt="Marker" src={Marker} />
           <div className="[font-family:'DM_Sans-Medium',Helvetica] w-fit mt-[-1.00px] tracking-normal text-base text-blue font-medium leading-normal relative">
-            {when}
+            {where}
           </div>
         </div>
         <div className="inline-flex items-start gap-[10px] flex-[0_0_auto] relative">
@@ -48,14 +59,13 @@ const Card = ({ item }) => {
         <div
           className={`inline-flex items-start gap-[10px] flex-[0_0_auto] px-[13px] py-[6px] overflow-hidden rounded-[500px] relative bg-secondary`}
         >
-          <div className="[font-family:'Clash_Display-Semibold',Helvetica] w-fit mt-[-1.00px] tracking-normal text-base text-white font-normal leading-normal relative">
-            {/* {taskStatus} */}
+          <div className="capitalize [font-family:'Clash_Display-Semibold',Helvetica] w-fit mt-[-1.00px] tracking-normal text-base text-white font-normal leading-normal relative">
+            {task_status}
           </div>
         </div>
         <div className="inline-flex items-start gap-[10px] flex-[0_0_auto] px-[13px] py-[6px] overflow-hidden rounded-[500px] bg-[#94b6ef] relative">
           <div className="[font-family:'Clash_Display-Semibold',Helvetica] w-fit mt-[-1.00px] tracking-normal text-base text-white font-normal leading-normal relative">
-            {/* {offered?.length}  */}
-            {/* OFFERS */}
+            {questions?.length} OFFERS
           </div>
         </div>
       </div>

@@ -4,12 +4,14 @@ import { DatePicker } from "@/components/ui/calendar_date_picker";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const openai = new OpenAI({
   apiKey: import.meta.env.VITE_REACT_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 export default function CreateTask() {
+  const { user } = useSelector((state) => state.auth);
   const [selectedFile, setSelectedFile] = useState(null);
   const [inputData, setInputData] = useState({});
   // const [flexible]
@@ -126,6 +128,7 @@ export default function CreateTask() {
 
   const handleCreateTask = async () => {
     const res = await axios.post("http://localhost:5000/api/v1/tasks", {
+      userId: user?._id,
       what: inputData?.what,
       who: inputData?.who,
       where: inputData?.where,
@@ -133,7 +136,7 @@ export default function CreateTask() {
       date: inputData?.date,
       details: inputData?.details,
       budget: inputData?.budget * 1,
-      aiQuisions: [
+      aiQuestions: [
         {
           question: aiQuisions[0] || "",
           answer: inputData?.aiQuistion1 || "",
