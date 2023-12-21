@@ -165,19 +165,22 @@ function MyOffers() {
                   <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="">
                 <DialogTrigger asChild>
                   <DropdownMenuItem
                     onClick={() => {
                       setOpen(!open);
                       // navigator.clipboard.writeText(payment.id);
                     }}
+                    className="cursor-pointer"
                   >
-                    Copy payment ID
+                    View Details
                   </DropdownMenuItem>
                 </DialogTrigger>
 
-                <DropdownMenuItem>Reject</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <p className="cursor-pointer text-destructive">Reject</p>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -185,28 +188,6 @@ function MyOffers() {
               className="max-h-max border md:max-w-2xl"
               xtra=" opacity-30"
             >
-              {/* <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="name" className="text-right">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    defaultValue="Pedro Duarte"
-                    className="col-span-3"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label htmlFor="username" className="text-right">
-                    Username
-                  </label>
-                  <Input
-                    id="username"
-                    defaultValue="@peduarte"
-                    className="col-span-3"
-                  />
-                </div>
-              </div> */}
               <OfferDetails open={open} setOpen={setOpen} />
             </DialogContent>
           </Dialog>
@@ -214,77 +195,6 @@ function MyOffers() {
       },
     },
   ];
-  {
-    /* <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0 ">
-                  <MoreHorizontal className="h-4 w-4 " />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DialogTrigger asChild>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => {
-                    }}
-                  >
-                    View Details
-                  </DropdownMenuItem>
-                </DialogTrigger>
-
-                <DropdownMenuItem className="cursor-pointer">
-                  <p className="text-destructive ">Reject</p>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu> */
-  }
-  {
-    /* <DialogPortal>
-              <DialogContent className=" !z-50 bg-white">
-                <DialogHeader>
-                  <DialogTitle>Edit profile</DialogTitle>
-                  <DialogDescription>
-                    Make changes to your profile here. Click save when
-                    you&apos;re done.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label htmlFor="name" className="text-right">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      defaultValue="Pedro Duarte"
-                      className="col-span-3"
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <label htmlFor="username" className="text-right">
-                      Username
-                    </label>
-                    <Input
-                      id="username"
-                      defaultValue="@peduarte"
-                      className="col-span-3"
-                    />
-                  </div>
-                </div>
-                <DialogFooter>
-                  <DialogClose asChild={false}>
-                    <Button
-                      type="submit"
-                      onClick={() => {
-                        // setOpen(false);
-                      }}
-                    >
-                      Save changes
-                    </Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </DialogPortal> */
-  }
 
   const table = useReactTable({
     data,
@@ -306,7 +216,7 @@ function MyOffers() {
   });
 
   return (
-    <div className="max-w-5xl container">
+    <div className="max-w-5xl">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -395,8 +305,7 @@ function MyOffers() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          Total Offers {table.getFilteredRowModel().rows.length}
         </div>
         <div className="space-x-2">
           <Button

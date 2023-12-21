@@ -9,6 +9,14 @@ import BrowseTasks from "./pages/task/browse_tasks/BrowseTasks";
 import SingleTask from "./pages/task/single_task/SingleTask";
 import PersonDetails from "./pages/user/PersonDetails";
 import MyOffers from "./pages/account/my_offers/MyOffers";
+import DashboardLayout from "./layout/DashboardLayout";
+import Dashboard from "./pages/account/Dashboard";
+
+import SettingsLayout from "./layout/SettingsLayout";
+import Profile from "./pages/settings/profile/Profile";
+import Accounts from "./pages/settings/accounts/Accounts";
+import Notification from "./pages/settings/notifications/Notification";
+import Messages from "./pages/message/Messages";
 
 function App() {
   return (
@@ -31,8 +39,17 @@ function App() {
             element={<Navigate to={"/person_details/:id"} />}
           />
           <Route path="/person_details/:id" element={<PersonDetails />} />
-          <Route path="/account/my_offers" element={<MyOffers />} />
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="my_offers" element={<MyOffers />} />
+          </Route>
+          <Route path="/settings" element={<SettingsLayout />}>
+            <Route index element={<Profile />} />
+            <Route path="account" element={<Accounts />} />
+            <Route path="notifications" element={<Notification />} />
+          </Route>
         </Route>
+        <Route path="/messages" element={<Messages />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>

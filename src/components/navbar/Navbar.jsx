@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <nav className="p-4 shadow-sm bg-[#213F61]">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex gap-3 items-center ">
           <Link
             to="/"

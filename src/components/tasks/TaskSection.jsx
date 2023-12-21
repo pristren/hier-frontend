@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "./Card";
+import Card from "./TaskCard";
 import FilterSection from "./FilterSection";
 import { Link } from "react-router-dom";
 // import MyMap from "./Map";
