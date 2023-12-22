@@ -4,7 +4,7 @@ import Timer from "../../assets/logo/time-fast.svg";
 import User from "../../assets/logo/user.svg";
 import PropTypes from "prop-types";
 
-const Card = ({ item }) => {
+const TaskCard = ({ item }) => {
   const {
     _id,
     what,
@@ -73,8 +73,8 @@ const Card = ({ item }) => {
   );
 };
 
-export default Card;
+export default TaskCard;
 
-Card.propTypes = {
+TaskCard.propTypes = {
   item: PropTypes.object.isRequired,
 };

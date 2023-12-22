@@ -34,7 +34,7 @@ export default function DashboardLayout() {
             </Avatar>
             <h2 className="text-lg font-semibold mt-4">Mahmud Qudrati</h2>
           </div>
-          <nav className="flex flex-col ">
+          <nav className="flex flex-col space-y-1">
             {bar.map((b, i) => {
               return (
                 <Link
@@ -52,7 +52,7 @@ export default function DashboardLayout() {
             })}
           </nav>
         </aside>
-        <main className="flex-1 p-8 pe-0 min-h-screen">
+        <main className="flex-1 p-8 pe-0 min-h-min">
           <Outlet />
           {/* <div className="flex flex-col space-y-6">
             <div className="flex items-center justify-between">

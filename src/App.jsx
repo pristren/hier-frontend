@@ -17,6 +17,7 @@ import Profile from "./pages/settings/profile/Profile";
 import Accounts from "./pages/settings/accounts/Accounts";
 import Notification from "./pages/settings/notifications/Notification";
 import Messages from "./pages/message/Messages";
+import MyTasks from "./pages/account/my_tasks/MyTasks";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="my_offers" element={<MyOffers />} />
+            <Route path="offer_sent" element={<MyOffers />} />
+            <Route path="my_tasks" element={<MyTasks />} />
           </Route>
           <Route path="/settings" element={<SettingsLayout />}>
             <Route index element={<Profile />} />

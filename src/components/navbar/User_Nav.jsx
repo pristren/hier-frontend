@@ -3,6 +3,7 @@ import {
   CreditCard,
   Github,
   Keyboard,
+  LayoutDashboard,
   LifeBuoy,
   LogOut,
   Mail,
@@ -52,24 +53,26 @@ export function UserNav() {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>Welcome Taha</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer ">
-            <User className="mr-2 h-4 w-4" />
-            <Link to={"/profile"}>Profile</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer ">
-            <Mail className="mr-2 h-4 w-4" />
-            <Link to={"/messages"}>Message</Link>
-          </DropdownMenuItem>
           <Link to={"/dashboard"}>
             <DropdownMenuItem className="cursor-pointer ">
-              <CreditCard className="mr-2 h-4 w-4" />
+              <LayoutDashboard className="mr-2 h-4 w-4" />
               <span>Dashboard</span>
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
+          {/* <DropdownMenuItem className="cursor-pointer ">
+            <User className="mr-2 h-4 w-4" />
+            <Link to={"/profile"}>Profile</Link>
+          </DropdownMenuItem> */}
+          <Link to={"/messages"}>
+            <DropdownMenuItem className="cursor-pointer ">
+              <Mail className="mr-2 h-4 w-4" />
+              Message
+            </DropdownMenuItem>
+          </Link>
+
           <Link to={"/settings"}>
             <DropdownMenuItem className="cursor-pointer ">
               <Settings className="mr-2 h-4 w-4" />

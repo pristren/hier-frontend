@@ -123,7 +123,7 @@ export default function OfferDetails({ open, setOpen }) {
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center mt-8">
             <Button
-              className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-400  "
               onClick={() => {
                 setOpen(!open);
               }}
@@ -131,7 +131,7 @@ export default function OfferDetails({ open, setOpen }) {
               Accept Proposal
             </Button>
             <Button
-              className="text-gray-800 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+              className="text-gray-800 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900disabled:pointer-events-none disabled:opacity-50"
               onClick={() => {
                 setOpen(!open);
               }}

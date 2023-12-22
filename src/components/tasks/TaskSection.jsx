@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "./TaskCard";
+import TaskCard from "./TaskCard";
 import FilterSection from "./FilterSection";
 import { Link } from "react-router-dom";
 // import MyMap from "./Map";
@@ -279,7 +279,7 @@ const TaskSection = ({
           {originalData?.length > 0 ? (
             originalData.map((item, idx) => (
               <Link key={idx} to={`/browse-tasks/${item?._id}`}>
-                <Card key={idx} item={item} />
+                <TaskCard key={idx} item={item} />
               </Link>
             ))
           ) : (
