@@ -21,7 +21,7 @@ export default function Home() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("authUser")) || {};
+    const user = JSON.parse(localStorage.getItem("authUser")) || {};
     setUser(user.user);
   }, []);
 

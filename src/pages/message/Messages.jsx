@@ -10,7 +10,7 @@ export default function Messages() {
     <div className="">
       <Navbar />{" "}
       <div className="lg:mx-4">
-        <div className="mx-4 lg:container flex h-[88vh] lg:h-[86vh] mt-4 rounded-2xl border lg:p-0">
+        <div className="mx-4 lg:container flex h-[85vh] lg:h-[82vh] mt-4 rounded-2xl border lg:p-0">
           <div className="flex flex-col w-[25%]  border-r ">
             <div className="m-6">
               <div className="flex border items-center bg-white rounded-md  px-2">
@@ -73,6 +73,25 @@ export default function Messages() {
               </div>
             </div>
             <div className="flex-1 overflow-y-auto p-4 space-y-4 gap-4">
+              <div className="flex  items-end justify-start">
+                <div className="max-w-xs bg-gray-100 rounded-lg p-4">
+                  <p className="text-sm">Hi, how&apos;s your day shaping up?</p>
+                  <span className="ml-2 float-right text-xs text-gray-500 mt-2">
+                    8:30 AM
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-end justify-end ">
+                <div className="max-w-xs bg-secondary text-white rounded-lg p-4">
+                  <p className="text-sm">
+                    It&apos;s been quite hectic, deadlines looming. Just
+                    finished a long meeting.
+                  </p>
+                  <span className=" float-right mt-2 text-xs text-gray-100">
+                    8:35 AM
+                  </span>
+                </div>
+              </div>
               <div className="flex  items-end justify-start">
                 <div className="max-w-xs bg-gray-100 rounded-lg p-4">
                   <p className="text-sm">Hi, how&apos;s your day shaping up?</p>

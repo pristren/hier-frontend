@@ -185,7 +185,7 @@ function MyOffers() {
             </DropdownMenu>
 
             <DialogContent
-              className="max-h-max border md:max-w-2xl"
+              className="max-h-[98vh] overflow-y-auto border md:max-w-2xl"
               xtra=" opacity-30"
             >
               <OfferDetails open={open} setOpen={setOpen} />
@@ -219,10 +219,10 @@ function MyOffers() {
     <div className="max-w-5xl">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={table.getColumn("email")?.getFilterValue() || ""}
+          placeholder="Filter tasks..."
+          value={table.getColumn("task")?.getFilterValue() || ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("task")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

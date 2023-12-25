@@ -10,7 +10,7 @@ export default function Navbar() {
   // console.log(accessToken);
   const dispatch = useDispatch();
   const getLoggedinUser = () => {
-    const user = sessionStorage.getItem("authUser");
+    const user = localStorage.getItem("authUser");
     if (!user) {
       return null;
     } else {
@@ -18,7 +18,7 @@ export default function Navbar() {
     }
   };
   useEffect(() => {
-    const user = sessionStorage.getItem("authUser");
+    const user = localStorage.getItem("authUser");
     if (user) {
       const userData = JSON.parse(user);
       dispatch(

@@ -2,48 +2,82 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Trash } from "lucide-react";
-import React from "react";
+import axios from "axios";
+import { format } from "date-fns";
+import { Pencil, Trash } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function MyTasks() {
-  const data = [
-    {
-      title: "Need a logo Designer",
-      price: 300,
-      category: "Design",
-      details:
-        "Design a logo for my new startup. Looking for a minimal and modern design.",
-      date: "20/12/2023",
-      location: "Remote",
-    },
-    {
-      title: "Help me moving my sofa",
-      price: 200,
-      category: "House Help",
-      details:
-        "Design a logo for my new startup. Looking for a minimal and modern design.",
-      date: "20/12/2023",
-      location: "Remote",
-    },
-    {
-      title: "Plamber needs to fix.",
-      price: 500,
-      category: "Design",
-      details:
-        "Design a logo for my new startup. Looking for a minimal and modern design.",
-      date: "20/12/2023",
-      location: "Swizerland",
-    },
-    {
-      title: "Help me moving my sofa",
-      price: 200,
-      category: "House Help",
-      details:
-        "Design a logo for my new startup. Looking for a minimal and modern design.",
-      date: "20/12/2023",
-      location: "Remote",
-    },
-  ];
+  // const data = [
+  //   {
+  //     title: "Need a logo Designer",
+  //     price: 300,
+  //     category: "Design",
+  //     details:
+  //       "Design a logo for my new startup. Looking for a minimal and modern design.",
+  //     date: "20/12/2023",
+  //     location: "Remote",
+  //   },
+  //   {
+  //     title: "Help me moving my sofa",
+  //     price: 200,
+  //     category: "House Help",
+  //     details:
+  //       "Design a logo for my new startup. Looking for a minimal and modern design.",
+  //     date: "20/12/2023",
+  //     location: "Remote",
+  //   },
+  //   {
+  //     title: "Plamber needs to fix.",
+  //     price: 500,
+  //     category: "Design",
+  //     details:
+  //       "Design a logo for my new startup. Looking for a minimal and modern design.",
+  //     date: "20/12/2023",
+  //     location: "Swizerland",
+  //   },
+  //   {
+  //     title: "Help me moving my sofa",
+  //     price: 200,
+  //     category: "House Help",
+  //     details:
+  //       "Design a logo for my new startup. Looking for a minimal and modern design.",
+  //     date: "20/12/2023",
+  //     location: "Remote",
+  //   },
+  // ];
+  const [data, setData] = useState([]);
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
+  useEffect(() => {
+    const getTaks = async () => {
+      const data = await axios.get(
+        `http://localhost:5000/api/v1/tasks/user/${user?._id}`
+      );
+      const res = await data.data;
+      setData(res);
+    };
+    getTaks();
+  }, [user?._id]);
+
+  console.log(data);
+
+  const [search, setSearch] = useState("");
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`http://localhost:5000/api/v1/tasks/${id}`)
+      .then((res) => {
+        axios
+          .get(`http://localhost:5000/api/v1/tasks/user/${user?._id}`)
+          .then((res) => {
+            setData(res.data);
+          });
+      })
+      .catch(() => {
+        console.error("Error from delete of a task");
+      });
+  };
   return (
     <div className="grid min-h-min w-full border">
       <div className="flex flex-col">
@@ -56,6 +90,7 @@ export default function MyTasks() {
                   className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 dark:bg-gray-950"
                   placeholder="Search tasks..."
                   type="search"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
             </form>
@@ -65,42 +100,51 @@ export default function MyTasks() {
           <div className="flex items-center">
             <h1 className="font-semibold text-lg md:text-2xl">My Tasks</h1>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {data?.length &&
-              data.map((task, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {data
+              ?.filter((item) => {
+                return item?.what
+                  ?.toLowerCase()
+                  ?.includes(search?.toLowerCase());
+              })
+              .map((task, i) => {
                 return (
                   <Card key={i}>
                     <CardContent className="px-0">
-                      <div className="flex justify-between gap-2 items-center p-4 ">
+                      <div className="flex  justify-between gap-2 items-center p-4 ">
                         <h2 className="text-xl font-bold  text-gray-800">
-                          {task.title || ""}
+                          {task?.what || ""}
                         </h2>
                         <h2 className="text-xl font-bold  text-white p-1 rounded bg-secondary">
-                          ${task.price || ""}
+                          ${task?.budget || ""}
                         </h2>
                       </div>
                       <Separator className="bg-gray-200" />
                       <div className="p-4 pb-0 pt-2 ">
                         <div className="flex items-center mt-2 text-secondary font-semibold">
-                          <TagIcon className="h-4 w-4 mr-2" />
-                          <span>{task.category || ""}</span>
+                          {task?.category && (
+                            <TagIcon className="h-4 w-4 mr-2" />
+                          )}
+                          <span>{task?.category || ""}</span>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                          {task.details || ""}
+                          {task?.details?.length > 50
+                            ? task?.details?.substring(0, 50) + "..." // Truncate details if longer than 50 characters
+                            : task?.details || ""}
                         </p>
 
-                        <div className="flex justify-between">
+                        <div className="flex flex-wrap justify-between">
                           <div className="flex items-center mt-2">
                             <ClockIcon className="h-4 w-4 mr-2" />
-                            <span>{task.date || ""}</span>
+                            <span>{format(task?.date, "PPP") || ""}</span>
                           </div>
                           <div className="flex items-center mt-2">
                             <MapPinIcon className="h-4 w-4 mr-2" />
-                            <span>{task.location || ""}</span>
+                            <span>{task?.where || ""}</span>
                           </div>
                         </div>
 
-                        <div className="mt-4 flex justify-between items-center gap-6">
+                        <div className="mt-4 flex justify-between items-center gap-4 ">
                           <Button
                             className="w-full text-white"
                             variant="secondary"
@@ -108,8 +152,12 @@ export default function MyTasks() {
                           >
                             View Details
                           </Button>
-                          <div className="border border-gray-300  cursor-pointer  hover:bg-gray-50  p-2 rounded">
-                            <Trash className="w-5 h-5 text-destructive " />
+                          <div className="flex gap-2">
+                            <Pencil className="w-9 h-9 text-secondary border border-gray-300  cursor-pointer  hover:bg-gray-50  p-2 rounded " />
+                            <Trash
+                              className="w-9 h-9 text-destructive border border-gray-300  cursor-pointer  hover:bg-gray-50  p-2 rounded "
+                              onClick={() => handleDelete(task?._id)}
+                            />
                           </div>
                         </div>
                       </div>

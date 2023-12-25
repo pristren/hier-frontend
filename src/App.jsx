@@ -40,7 +40,14 @@ function App() {
             element={<Navigate to={"/person_details/:id"} />}
           />
           <Route path="/person_details/:id" element={<PersonDetails />} />
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <AuthProtected>
+                <DashboardLayout />
+              </AuthProtected>
+            }
+          >
             <Route index element={<Dashboard />} />
             <Route path="my_offers" element={<MyOffers />} />
             <Route path="offer_sent" element={<MyOffers />} />

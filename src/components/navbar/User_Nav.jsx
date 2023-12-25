@@ -40,7 +40,7 @@ export function UserNav() {
   const dispatch = useDispatch();
 
   const handleLoggedOut = () => {
-    sessionStorage.removeItem("authUser");
+    localStorage.removeItem("authUser");
     dispatch(userLoggedOut());
   };
   return (
