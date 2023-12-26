@@ -9,6 +9,10 @@ export default function DashboardLayout() {
       pathname: "/dashboard",
     },
     {
+      name: "My Orders",
+      pathname: "/dashboard/my_orders",
+    },
+    {
       name: "My Offers",
       pathname: "/dashboard/my_offers",
     },

@@ -49,7 +49,7 @@ export default function MyTasks() {
   // ];
   const [data, setData] = useState([]);
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     const getTaks = async () => {
       const data = await axios.get(
@@ -61,7 +61,7 @@ export default function MyTasks() {
     getTaks();
   }, [user?._id]);
 
-  console.log(data);
+  // console.log(data);
 
   const [search, setSearch] = useState("");
   const handleDelete = async (id) => {
