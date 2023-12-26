@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import React from "react";
 import { ProfileForm } from "./Profile_Form";
 
-export default function Profile() {
+export default function SettingProfile() {
   return (
     <div className="space-y-6">
       <div>

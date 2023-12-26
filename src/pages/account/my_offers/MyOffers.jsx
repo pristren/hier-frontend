@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -41,41 +41,44 @@ import {
 } from "@/components/ui/dialog";
 
 import OfferDetails from "@/components/dashboard/offer_sent/OfferDetails";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { format } from "date-fns";
 
-const data = [
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    user: "Jordan Kennedy",
-    email: "ken99@yahoo.com",
-    task: "Title of the task..",
-    date: "12/12/2023",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    user: "Jackson Graham",
-    email: "Abe45@gmail.com",
-    task: "Title of the task 2..",
-    date: "12/08/2023",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    user: "Lauren Trujillo",
-    email: "Monserrat44@gmail.com",
-    task: "Title of the task..",
-    date: "02/10/2023",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    user: "Curtis Weaver",
-    email: "Silas22@gmail.com",
-    task: "Title of the task..",
-    date: "02/10/2023",
-  },
-];
+// const data = [
+//   {
+//     id: "m5gr84i9",
+//     amount: 316,
+//     user: "Jordan Kennedy",
+//     email: "ken99@yahoo.com",
+//     task: "Title of the task..",
+//     date: "12/12/2023",
+//   },
+//   {
+//     id: "3u1reuv4",
+//     amount: 242,
+//     user: "Jackson Graham",
+//     email: "Abe45@gmail.com",
+//     task: "Title of the task 2..",
+//     date: "12/08/2023",
+//   },
+//   {
+//     id: "derv1ws0",
+//     amount: 837,
+//     user: "Lauren Trujillo",
+//     email: "Monserrat44@gmail.com",
+//     task: "Title of the task..",
+//     date: "02/10/2023",
+//   },
+//   {
+//     id: "5kma53ae",
+//     amount: 874,
+//     user: "Curtis Weaver",
+//     email: "Silas22@gmail.com",
+//     task: "Title of the task..",
+//     date: "02/10/2023",
+//   },
+// ];
 
 function MyOffers() {
   const [sorting, setSorting] = React.useState([]);
@@ -83,40 +86,83 @@ function MyOffers() {
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
   const [open, setOpen] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const [data, setData] = useState([
+    {
+      body: "",
+      createdAt: "",
+      offer_amount: "",
+      offer_createdat: "",
+      taskId: {
+        _id: "",
+        userId: "",
+        what: "",
+        when: "",
+        who: "",
+      },
+      title: "",
+      updatedAt: "",
+      userId: {
+        _id: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+      },
+      _id: "",
+    },
+  ]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/offers/user/${user._id}`)
+      .then((res) => {
+        setData(res.data);
+      });
+  }, [user?._id]);
+  console.log(data);
 
   const columns = [
     {
-      accessorKey: "task",
+      accessorKey: "taskId.what",
       header: "Task",
-      cell: ({ row }) => (
-        <div className="capitalize flex items-center gap-4">
-          <Avatar className="cursor-pointer rounded-none">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          </Avatar>
-          {row.getValue("task")}
-        </div>
-      ),
+      cell: ({ row }) => {
+        console.log(row.original.taskId.what);
+
+        return (
+          <div className="capitalize flex items-center gap-4">
+            <Avatar className="cursor-pointer rounded-none">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            </Avatar>
+            {row?.original?.taskId?.what}
+          </div>
+        );
+      },
     },
     {
-      accessorKey: "date",
+      accessorKey: "offer_createdat",
       header: "Sent At",
       cell: ({ row }) => (
         <div className="capitalize flex items-center gap-4">
-          {row.getValue("date")}
+          {row?.getValue("offer_createdat")
+            ? format(row?.getValue("offer_createdat"), "PPP")
+            : " "}
         </div>
       ),
     },
     {
-      accessorKey: "user",
+      // accessorKey: "user",
       header: "Offer Sent By",
-      cell: ({ row }) => (
-        <div className="capitalize flex items-center gap-4">
-          <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          </Avatar>
-          {row.getValue("user")}
-        </div>
-      ),
+      cell: ({ row }) => {
+        return (
+          <div className="capitalize flex items-center gap-4">
+            <Avatar className="cursor-pointer">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            </Avatar>
+            {row?.original?.userId?.first_name}{" "}
+            {row?.original?.userId?.last_name}
+          </div>
+        );
+      },
     },
     // {
     //   accessorKey: "email",
@@ -136,10 +182,10 @@ function MyOffers() {
     //   ),
     // },
     {
-      accessorKey: "amount",
+      accessorKey: "offer_amount",
       header: () => <div className="text-right">Amount</div>,
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("amount"));
+        const amount = parseFloat(row.getValue("offer_amount"));
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
@@ -214,15 +260,16 @@ function MyOffers() {
       rowSelection,
     },
   });
+  // console.log(table.getAllColumns());
 
   return (
     <div className="max-w-5xl">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter tasks..."
-          value={table.getColumn("task")?.getFilterValue() || ""}
+          value={table.getColumn("taskId_what")?.getFilterValue() || ""}
           onChange={(event) =>
-            table.getColumn("task")?.setFilterValue(event.target.value)
+            table.getColumn("taskId_what")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
