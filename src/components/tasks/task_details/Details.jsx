@@ -7,15 +7,18 @@ import User from "../../../assets/logo/user.svg";
 import { useNavigate } from "react-router-dom";
 import { taskData } from "@/helpers/tasks_data/TaskData";
 import axios from "axios";
+import MakeOffer from "../offer_modal/MakeOffer";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Details = (props) => {
   const navigate = useNavigate();
-
+  const [open, setOpen] = useState(false);
   const {
     _id,
     what,
     when,
     where,
+    offers,
     who,
     details,
     budget,
@@ -160,14 +163,39 @@ const Details = (props) => {
                 </div>
                 <div className="inline-flex items-start gap-[10px] px-[13px] py-[6px] relative flex-[0_0_auto] bg-[#94b6ef] rounded-[500px] overflow-hidden">
                   <div className="relative w-fit mt-[-1.00px] font-normal text-white text-4 tracking-normal leading-normal">
-                    {questions?.length} OFFERS
+                    {offers?.length} OFFERS
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="inline-flex items-start gap-2 relative flex-[0_0_auto]">
+        <Dialog open={open} onOpenChange={setOpen}>
+          <button
+            onClick={() => {
+              setOpen(!open);
+              // navigator.clipboard.writeText(payment.id);
+            }}
+            className="cursor-pointer flex w-[249px] items-center justify-center gap-[10px] px-6 py-[16px] relative bg-secondary rounded-[50px]"
+          >
+            <div className="relative w-fit mt-[-1.00px] font-normal text-[#ffffff] text-4 tracking-normal leading-normal">
+              Make an offer
+            </div>
+          </button>
+
+          <DialogContent
+            className="max-h-[98vh] overflow-y-auto border md:max-w-2xl"
+            xtra=" opacity-30"
+          >
+            <MakeOffer
+              open={open}
+              setOpen={setOpen}
+              taskId={_id}
+              fetchSingleData={props.fetchSingleData}
+            />
+          </DialogContent>
+        </Dialog>
+        {/* <div className="inline-flex items-start gap-2 relative flex-[0_0_auto]">
           <button
             onClick={() => makeAnOffer(_id)}
             className="cursor-pointer flex w-[249px] items-center justify-center gap-[10px] px-6 py-[16px] relative bg-secondary rounded-[50px]"
@@ -176,7 +204,7 @@ const Details = (props) => {
               Make an offer
             </div>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

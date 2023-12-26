@@ -6,33 +6,9 @@ import { taskData } from "@/helpers/tasks_data/TaskData";
 // import { taskData } from "../GlobalComponents/TaskData";
 // import Map from "../Map";
 
-const Comments = ({ id }) => {
+const Comments = ({ taskDetails }) => {
   const position = [51.505, -0.09];
-  const [taskDetails, setTaskDetails] = useState({});
-
-  useEffect(() => {
-    const foundTask = taskData.find((item) => item?._id == id);
-    setTaskDetails(foundTask || {});
-  }, [id]);
-
-  const {
-    _id,
-    taskTitle,
-    amount,
-    details,
-    taskStatus,
-    offered,
-    follow,
-    carl_category_name,
-    workType,
-    location,
-    mapLocation,
-    created_at,
-    deadline,
-    postedUser,
-    questions,
-    workTime,
-  } = taskDetails;
+  const { offers, _id } = taskDetails;
 
   // get hours
   const timeCalculation = (time) => {
@@ -85,6 +61,8 @@ const Comments = ({ id }) => {
           </>
         )}
       </Map> */}
+      {console.log(offers)}
+
       <div className="flex flex-col  items-start gap-4 relative mt-10">
         <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
           <div className="relative w-fit [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
@@ -92,49 +70,55 @@ const Comments = ({ id }) => {
           </div>
           <div className="inline-flex items-start gap-[10px] px-[13px] py-py-1.5 bg-[#94b6ef] rounded-[500px] overflow-hidden relative flex-[0_0_auto]">
             <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-white text-4 tracking-normal leading-normal">
-              {offered?.length} OFFERS
+              {offers?.length} OFFERS
             </div>
           </div>
         </div>
-        <div className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]">
-          <div className="flex flex-col lg:flex-row items-start justify-between w-full relative flex-[0_0_auto]">
-            <div className="inline-flex items-center gap-[10px] relative flex-[0_0_auto]">
-              <img
-                width={100}
-                height={100}
-                className="relative w-[43.27px] h-[44px] object-cover"
-                alt="Ellipse"
-                src={User}
-              />
-              <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
-                  {postedUser?.name}
-                </div>
-                <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
-                    {postedUser?.label}
+        {offers?.map((data, i) => (
+          <div
+            key={i}
+            className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]"
+          >
+            <div className="flex flex-col lg:flex-row items-start justify-between w-full relative flex-[0_0_auto]">
+              <div className="inline-flex items-center gap-[10px] relative flex-[0_0_auto]">
+                <img
+                  width={100}
+                  height={100}
+                  className="relative w-[43.27px] h-[44px] object-cover"
+                  alt="Ellipse"
+                  src={User}
+                />
+                <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
+                  <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
+                    {data?.userId?.first_name}
+                    {""} {data?.userId?.last_name}
+                  </div>
+                  <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
+                    <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
+                      {data?.title}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
-              {timeCalculation(postedUser?.created_at)} hours ago
-            </div>
-          </div>
-          <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
-            <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-              {postedUser?.text}
-            </p>
-            <button
-              onClick={() => handleCommentReply(postedUser?._id)}
-              className="inline-flex items-center justify-center gap-[10px] px-5 py-2 bg-secondary rounded-[50px] relative flex-[0_0_auto]"
-            >
-              <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-white text-4 tracking-normal leading-normal">
-                Reply
+              <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
+                {timeCalculation(data?.offer_createdat)} hours ago
               </div>
-            </button>
+            </div>
+            <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
+              <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
+                {data?.body}
+              </p>
+              <button
+                // onClick={() => handleCommentReply(postedUser?._id)}
+                className="inline-flex items-center justify-center gap-[10px] px-5 py-2 bg-secondary rounded-[50px] relative flex-[0_0_auto]"
+              >
+                <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-white text-4 tracking-normal leading-normal">
+                  Reply
+                </div>
+              </button>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
       <div className="flex flex-col items-start gap-3 relative mt-5">
         <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
@@ -143,7 +127,7 @@ const Comments = ({ id }) => {
           </div>
           <div className="inline-flex items-start gap-[10px] px-[13px] py-1.5 bg-[#e78c3b] rounded-[500px] overflow-hidden relative flex-[0_0_auto]">
             <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] text-white text-4 font-normal tracking-normal leading-normal">
-              {questions?.length} QUESTIONS
+              {/* {questions?.length} QUESTIONS */}
             </div>
           </div>
         </div>
@@ -208,22 +192,22 @@ const Comments = ({ id }) => {
               />
               <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
-                  {postedUser?.name}
+                  {/* {postedUser?.name} */}
                 </div>
                 <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
-                    {postedUser?.label}
+                    {/* {postedUser?.label} */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
-              {timeCalculation(postedUser?.created_at)} hours ago
+              {/* {timeCalculation(postedUser?.created_at)} hours ago */}
             </div>
           </div>
           <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
             <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-              {postedUser?.text}
+              {/* {postedUser?.text} */}
             </p>
             <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
               <img
@@ -256,22 +240,22 @@ const Comments = ({ id }) => {
               />
               <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
-                  {postedUser?.name}
+                  {/* {postedUser?.name} */}
                 </div>
                 <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
-                    {postedUser?.label}
+                    {/* {postedUser?.label} */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
-              {timeCalculation(postedUser?.created_at)} hours ago
+              {/* {timeCalculation(postedUser?.created_at)} hours ago */}
             </div>
           </div>
           <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
             <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-              {postedUser?.text}
+              {/* {postedUser?.text} */}
             </p>
             <div className="inline-flex items-start gap-2 relative flex-[0_0_auto]">
               <img
