@@ -13,7 +13,7 @@ import DashboardLayout from "./layout/DashboardLayout";
 import Dashboard from "./pages/account/Dashboard";
 
 import SettingsLayout from "./layout/SettingsLayout";
-import Profile from "./pages/settings/profile/Profile";
+import Profile from "./pages/profile/Profile";
 import Accounts from "./pages/settings/accounts/Accounts";
 import Notification from "./pages/settings/notifications/Notification";
 import Messages from "./pages/message/Messages";
@@ -58,6 +58,14 @@ function App() {
             <Route path="account" element={<Accounts />} />
             <Route path="notifications" element={<Notification />} />
           </Route>
+          <Route
+            path="/profile"
+            element={
+              <AuthProtected>
+                <Profile />
+              </AuthProtected>
+            }
+          />
         </Route>
         <Route path="/messages" element={<Messages />} />
         <Route path="/signin" element={<SignIn />} />

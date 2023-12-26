@@ -13,6 +13,7 @@ import {
   Settings,
   User,
   UserPlus,
+  UserRound,
   Users,
 } from "lucide-react";
 
@@ -56,6 +57,12 @@ export function UserNav() {
         <DropdownMenuLabel>Welcome Taha</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <Link to={"/profile"}>
+            <DropdownMenuItem className="cursor-pointer ">
+              <UserRound className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+            </DropdownMenuItem>
+          </Link>
           <Link to={"/dashboard"}>
             <DropdownMenuItem className="cursor-pointer ">
               <LayoutDashboard className="mr-2 h-4 w-4" />
