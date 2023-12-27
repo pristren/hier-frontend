@@ -121,6 +121,9 @@ function MyOffers() {
   }, [user?._id]);
   // console.log(data);
 
+  const [modalData, setModalData] = useState({});
+  // console.log(modalData);
+
   const columns = [
     {
       accessorKey: "what",
@@ -216,6 +219,7 @@ function MyOffers() {
                   <DropdownMenuItem
                     onClick={() => {
                       setOpen(!open);
+                      setModalData(row?.original);
                       // navigator.clipboard.writeText(payment.id);
                     }}
                     className="cursor-pointer"
@@ -234,7 +238,13 @@ function MyOffers() {
               className="max-h-[98vh] overflow-y-auto border md:max-w-2xl"
               xtra=" opacity-30"
             >
-              <OfferDetails open={open} setOpen={setOpen} />
+              {open && (
+                <OfferDetails
+                  modalData={modalData}
+                  open={open}
+                  setOpen={setOpen}
+                />
+              )}
             </DialogContent>
           </Dialog>
         );
