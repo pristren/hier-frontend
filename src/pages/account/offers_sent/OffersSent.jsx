@@ -119,7 +119,7 @@ function OffersSent() {
         setData(res.data);
       });
   }, [user?._id]);
-  console.log(data);
+  // console.log(data);
 
   const columns = [
     {

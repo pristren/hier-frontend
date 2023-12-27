@@ -119,32 +119,32 @@ function MyOffers() {
         setData(res.data);
       });
   }, [user?._id]);
-  console.log(data);
+  // console.log(data);
 
   const columns = [
     {
-      accessorKey: "taskId.what",
+      accessorKey: "what",
       header: "Task",
       cell: ({ row }) => {
-        console.log(row.original.taskId.what);
+        // console.log(row.original);
 
         return (
           <div className="capitalize flex items-center gap-4">
             <Avatar className="cursor-pointer rounded-none">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             </Avatar>
-            {row?.original?.taskId?.what}
+            {row?.getValue("what")}
           </div>
         );
       },
     },
     {
-      accessorKey: "offer_createdat",
+      accessorKey: "createdAt",
       header: "Sent At",
       cell: ({ row }) => (
         <div className="capitalize flex items-center gap-4">
-          {row?.getValue("offer_createdat")
-            ? format(row?.getValue("offer_createdat"), "PPP")
+          {row?.getValue("createdAt")
+            ? format(row?.getValue("createdAt"), "PPP")
             : " "}
         </div>
       ),
@@ -182,10 +182,10 @@ function MyOffers() {
     //   ),
     // },
     {
-      accessorKey: "offer_amount",
+      accessorKey: "budget",
       header: () => <div className="text-right">Amount</div>,
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("offer_amount"));
+        const amount = parseFloat(row.getValue("budget"));
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {
@@ -267,9 +267,9 @@ function MyOffers() {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter tasks..."
-          value={table.getColumn("taskId_what")?.getFilterValue() || ""}
+          value={table.getColumn("what")?.getFilterValue() || ""}
           onChange={(event) =>
-            table.getColumn("taskId_what")?.setFilterValue(event.target.value)
+            table.getColumn("what")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
