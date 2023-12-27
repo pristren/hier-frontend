@@ -19,6 +19,7 @@ import Notification from "./pages/settings/notifications/Notification";
 import Messages from "./pages/message/Messages";
 import MyTasks from "./pages/account/my_tasks/MyTasks";
 import SettingProfile from "./pages/settings/profile/SettingProfile";
+import OffersSent from "./pages/account/offers_sent/OffersSent";
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="my_offers" element={<MyOffers />} />
-            <Route path="offer_sent" element={<MyOffers />} />
+            <Route path="offer_sent" element={<OffersSent />} />
             <Route path="my_tasks" element={<MyTasks />} />
           </Route>
           <Route path="/settings" element={<SettingsLayout />}>

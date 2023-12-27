@@ -80,7 +80,7 @@ import { format } from "date-fns";
 //   },
 // ];
 
-function MyOffers() {
+function OffersSent() {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
@@ -114,7 +114,7 @@ function MyOffers() {
   ]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/tasks/user/${user._id}`)
+      .get(`http://localhost:5000/api/v1/offers/user/${user._id}`)
       .then((res) => {
         setData(res.data);
       });
@@ -377,4 +377,4 @@ function MyOffers() {
   );
 }
 
-export default MyOffers;
+export default OffersSent;
