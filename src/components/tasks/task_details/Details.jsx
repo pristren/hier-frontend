@@ -26,6 +26,7 @@ const Details = (props) => {
     task_status,
     questions,
     aiQuestions,
+    userId,
   } = props.taskDetails;
 
   // Make an Offer
@@ -191,6 +192,7 @@ const Details = (props) => {
               open={open}
               setOpen={setOpen}
               taskId={_id}
+              posterId={userId?._id}
               fetchSingleData={props.fetchSingleData}
             />
           </DialogContent>
