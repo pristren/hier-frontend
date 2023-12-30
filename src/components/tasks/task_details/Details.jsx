@@ -87,9 +87,7 @@ const Details = (props) => {
               <p className="relative [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
                 {details}
               </p>
-              <p className="relative [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-                {details}
-              </p>
+
               {/* {aiQuestions?.length > 0 && (
                 <div>
                   {aiQuestions?.map((que, i) => (

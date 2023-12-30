@@ -108,14 +108,13 @@ const Comments = ({ taskDetails }) => {
               <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
                 {data?.body}
               </p>
-              <button
-                // onClick={() => handleCommentReply(postedUser?._id)}
+              {/* <button
                 className="inline-flex items-center justify-center gap-[10px] px-5 py-2 bg-secondary rounded-[50px] relative flex-[0_0_auto]"
               >
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-white text-4 tracking-normal leading-normal">
                   Reply
                 </div>
-              </button>
+              </button> */}
             </div>
           </div>
         ))}
