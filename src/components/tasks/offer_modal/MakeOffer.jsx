@@ -8,10 +8,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function MakeOffer({ open, setOpen, taskId, fetchSingleData }) {
+export default function MakeOffer({
+  open,
+  setOpen,
+  taskId,
+  fetchSingleData,
+  posterId,
+}) {
   const { user } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
-    title: "",
+    cover_letter: "",
     body: "",
     offer_amount: "",
   });
@@ -27,6 +33,7 @@ export default function MakeOffer({ open, setOpen, taskId, fetchSingleData }) {
       ...formData,
       userId: user?._id,
       taskId: taskId,
+      posterId: posterId,
     });
     if (res.data?._id) {
       fetchSingleData();
@@ -51,9 +58,9 @@ export default function MakeOffer({ open, setOpen, taskId, fetchSingleData }) {
             onChange={handleFormChange}
             className="border rounded p-2 border-gray-300 w-full"
             type="text"
-            name="title"
+            name="cover_letter"
             id=""
-            value={formData.title}
+            value={formData.cover_letter}
           />
         </div>
         <div className="grid max-w-4xl mx-auto grid-cols-1 md:grid-cols-2 gap-8 mt-8">

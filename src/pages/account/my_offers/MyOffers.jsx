@@ -114,7 +114,7 @@ function MyOffers() {
   ]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/tasks/user/${user._id}`)
+      .get(`http://localhost:5000/api/v1/offers/poster/${user._id}`)
       .then((res) => {
         setData(res.data);
       });
