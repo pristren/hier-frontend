@@ -11,7 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 
-export default function OfferDetails({ open, setOpen }) {
+export default function OfferDetails({ open, setOpen, modalData }) {
+  console.log(modalData);
   return (
     <div className="h-min overflow-y-auto ">
       {/* <DialogContent className="sm:max-w-[425px]">
@@ -65,38 +66,33 @@ export default function OfferDetails({ open, setOpen }) {
         <div className="container space-y-12 px-4 md:px-6">
           <div className="grid max-w-4xl mx-auto grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h3 className="text-lg font-bold">Requester&lsquo;s Details</h3>
+              <h3 className="text-lg font-bold">Tesk Details</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Address: 123 Street, City, Country
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Budget: $10,000
+                Budget: ${modalData?.budget}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Time: 3 months
+                Date: {modalData?.when}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Additional Details: Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
+                Additional Details: {modalData?.details}
               </p>
             </div>
             <div className="space-y-4">
               <h3 className="text-lg font-bold">Applicant&lsquo;s Details</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Name: John Doe
+                Name: {modalData?.userId?.first_name}{" "}
+                {modalData?.userId?.last_name}
               </p>
+
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Contact info: johndoe@example.com, +1234567890
+                Description: {modalData?.offers?.body || "missing"}
               </p>
+
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Description: Experienced professional with 10 years in the
-                industry.
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Additional Details: Specializes in delivering projects on time.
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Proposed Time: 2.5 months
+                Offer amount: {modalData?.offers?.offer_amount || "missing"}
               </p>
             </div>
           </div>
@@ -104,11 +100,10 @@ export default function OfferDetails({ open, setOpen }) {
             <div className="space-y-4">
               <h3 className="text-lg font-bold">Cover Letter</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                sit amet arcu sed mi efficitur lobortis.
+                {modalData?.cover_later || "No cover later"}
               </p>
             </div>
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h3 className="text-lg font-bold">Files</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 <Link href="#">Resume.pdf</Link>
@@ -119,7 +114,7 @@ export default function OfferDetails({ open, setOpen }) {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 <Link href="#">References.pdf</Link>
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center mt-8">
             <Button

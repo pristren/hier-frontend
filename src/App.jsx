@@ -52,6 +52,7 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="my_offers" element={<MyOffers />} />
+
             <Route path="offer_sent" element={<OffersSent />} />
             <Route path="my_tasks" element={<MyTasks />} />
           </Route>
