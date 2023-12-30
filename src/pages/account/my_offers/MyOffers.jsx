@@ -126,17 +126,17 @@ function MyOffers() {
 
   const columns = [
     {
-      accessorKey: "what",
+      accessorKey: "taskId.what",
       header: "Task",
       cell: ({ row }) => {
-        // console.log(row.original);
+        console.log(row.original);
 
         return (
           <div className="capitalize flex items-center gap-4">
             <Avatar className="cursor-pointer rounded-none">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             </Avatar>
-            {row?.getValue("what")}
+            {row?.original?.taskId?.what}
           </div>
         );
       },
@@ -185,10 +185,10 @@ function MyOffers() {
     //   ),
     // },
     {
-      accessorKey: "budget",
+      accessorKey: "offer_amount",
       header: () => <div className="text-right">Amount</div>,
       cell: ({ row }) => {
-        const amount = parseFloat(row.getValue("budget"));
+        const amount = parseFloat(row.getValue("offer_amount"));
 
         // Format the amount as a dollar amount
         const formatted = new Intl.NumberFormat("en-US", {

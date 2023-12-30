@@ -53,7 +53,7 @@ export default function MakeOffer({
       </DialogHeader>
       <main className={" px-4 md:px-6 w-full py-12"}>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Offer Title</h3>
+          <h3 className="text-lg font-bold">Cover Letter</h3>
           <input
             onChange={handleFormChange}
             className="border rounded p-2 border-gray-300 w-full"

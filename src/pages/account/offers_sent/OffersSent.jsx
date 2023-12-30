@@ -120,13 +120,14 @@ function OffersSent() {
       });
   }, [user?._id]);
   // console.log(data);
+  const [modalData, setModalData] = useState({});
 
   const columns = [
     {
       accessorKey: "taskId.what",
       header: "Task",
       cell: ({ row }) => {
-        console.log(row.original.taskId.what);
+        // console.log(row.original.taskId.what);
 
         return (
           <div className="capitalize flex items-center gap-4">
@@ -200,7 +201,8 @@ function OffersSent() {
       id: "actions",
       enableHiding: false,
       cell: ({ row }) => {
-        const payment = row.original;
+        // console.log(row.original);
+        // const payment = row.original;
 
         return (
           <Dialog open={open} onOpenChange={setOpen}>
@@ -215,6 +217,7 @@ function OffersSent() {
                 <DialogTrigger asChild>
                   <DropdownMenuItem
                     onClick={() => {
+                      setModalData(row?.original);
                       setOpen(!open);
                       // navigator.clipboard.writeText(payment.id);
                     }}
@@ -234,7 +237,14 @@ function OffersSent() {
               className="max-h-[98vh] overflow-y-auto border md:max-w-2xl"
               xtra=" opacity-30"
             >
-              <OfferDetails open={open} setOpen={setOpen} />
+              {open && (
+                <OfferDetails
+                  modalData={modalData}
+                  open={open}
+                  setOpen={setOpen}
+                />
+              )}
+              {/* <OfferDetails open={open} setOpen={setOpen} /> */}
             </DialogContent>
           </Dialog>
         );

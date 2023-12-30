@@ -9,10 +9,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
 import { PencilIcon, SettingsIcon } from "lucide-react";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Profile() {
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <div>
       <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
@@ -33,10 +37,14 @@ export default function Profile() {
           />
           {/* <SettingsIcon className="text-gray-400 w-6 h-6" /> */}
         </div>
-        <h1 className="text-2xl font-semibold">Mahmud Q.</h1>
+        <h1 className="text-2xl font-semibold">
+          {user?.first_name} {user?.last_name}
+        </h1>
         <p className="text-gray-500">Sydney NSW, Australia</p>
-        <p className="text-gray-500">Member since 3rd Oct 2023</p>
-        <p className="text-gray-500">Last online 1 minute ago</p>
+        <p className="text-gray-500">
+          Member since {format(user?.createdAt, "PPP")}{" "}
+        </p>
+        {/* <p className="text-gray-500">Last online 1 minute ago</p> */}
 
         <div className="flex mt-6 w-full gap-4">
           <Card className="w-[30%] pt-4 h-fit">
@@ -159,7 +167,7 @@ export default function Profile() {
             <Button variant="outline">As a poster</Button>
           </div>
           <p className="mt-4 text-center text-gray-500">
-            Mahmud Q. hasn&apos;t received any reviews just yet.
+            {user?.first_name} hasn&apos;t received any reviews just yet.
           </p>
         </div>
       </div>

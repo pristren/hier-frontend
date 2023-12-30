@@ -9,6 +9,12 @@ import { taskData } from "@/helpers/tasks_data/TaskData";
 import axios from "axios";
 import MakeOffer from "../offer_modal/MakeOffer";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Details = (props) => {
   const navigate = useNavigate();
@@ -84,7 +90,7 @@ const Details = (props) => {
               <p className="relative [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
                 {details}
               </p>
-              {aiQuestions?.length > 0 && (
+              {/* {aiQuestions?.length > 0 && (
                 <div>
                   {aiQuestions?.map((que, i) => (
                     <div key={i}>
@@ -100,7 +106,7 @@ const Details = (props) => {
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
             <div className="flex flex-col items-start gap-6 relative w-full flex-[0_0_auto]">
               <div className="flex items-center gap-6 px-0 py-6 w-full flex-[0_0_auto] border-t border-b flex-wrap">
@@ -208,6 +214,24 @@ const Details = (props) => {
           </button>
         </div> */}
       </div>
+      <p className="mb-4 mt-12 text-2xl font-semibold">FAQ about the task</p>
+      {aiQuestions?.length > 0 && (
+        <Accordion type="single" collapsible className="w-full ">
+          {aiQuestions?.map((que, i) => {
+            if (que?.answer !== "") {
+              return (
+                <AccordionItem key={i} value={`item-${i}`}>
+                  <AccordionTrigger className="text-left hover:no-underline">
+                    {que.question}
+                  </AccordionTrigger>
+                  <AccordionContent>{que.answer}</AccordionContent>
+                </AccordionItem>
+              );
+            }
+            return null;
+          })}
+        </Accordion>
+      )}
     </div>
   );
 };

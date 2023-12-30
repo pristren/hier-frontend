@@ -68,16 +68,16 @@ export default function OfferDetails({ open, setOpen, modalData }) {
             <div className="space-y-4">
               <h3 className="text-lg font-bold">Tesk Details</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Address: 123 Street, City, Country
+                Address: {modalData?.taskId?.where}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Budget: ${modalData?.budget}
+                Budget: ${modalData?.taskId?.budget}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Date: {modalData?.when}
+                Date: {modalData?.taskId?.when}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Additional Details: {modalData?.details}
+                Additional Details: {modalData?.taskId?.details}
               </p>
             </div>
             <div className="space-y-4">
@@ -88,11 +88,11 @@ export default function OfferDetails({ open, setOpen, modalData }) {
               </p>
 
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Description: {modalData?.offers?.body || "missing"}
+                Description: {modalData?.body || "missing"}
               </p>
 
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Offer amount: {modalData?.offers?.offer_amount || "missing"}
+                Offer amount: ${modalData?.offer_amount || "missing"}
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default function OfferDetails({ open, setOpen, modalData }) {
             <div className="space-y-4">
               <h3 className="text-lg font-bold">Cover Letter</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {modalData?.cover_later || "No cover later"}
+                {modalData?.cover_letter || "No cover later"}
               </p>
             </div>
             {/* <div className="space-y-4">

@@ -1,5 +1,6 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 export default function DashboardLayout() {
@@ -24,7 +25,8 @@ export default function DashboardLayout() {
   ];
   const location = useLocation();
   const { pathname } = location;
-  //   console.log(pathname);
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <div className="bg-white pt-6">
       <div className="flex flex-col lg:flex-row h-full bg-white container  w-full px-4">
@@ -33,7 +35,9 @@ export default function DashboardLayout() {
             <Avatar alt="User profile" className="w-32 h-32">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             </Avatar>
-            <h2 className="text-lg font-semibold mt-4">Mahmud Qudrati</h2>
+            <h2 className="text-lg font-semibold mt-4">
+              {user?.first_name} {user?.last_name}{" "}
+            </h2>
           </div>
           <nav className="flex flex-col space-y-1">
             {bar.map((b, i) => {

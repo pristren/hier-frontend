@@ -93,11 +93,11 @@ const Comments = ({ taskDetails }) => {
                     {data?.userId?.first_name}
                     {""} {data?.userId?.last_name}
                   </div>
-                  <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
+                  {/* <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
                     <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
                       {data?.title}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
@@ -125,11 +125,11 @@ const Comments = ({ taskDetails }) => {
           <div className="relative w-fit [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
             Questions
           </div>
-          <div className="inline-flex items-start gap-[10px] px-[13px] py-1.5 bg-[#e78c3b] rounded-[500px] overflow-hidden relative flex-[0_0_auto]">
+          {/* <div className="inline-flex items-start gap-[10px] px-[13px] py-1.5 bg-[#e78c3b] rounded-[500px] overflow-hidden relative flex-[0_0_auto]">
             <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] text-white text-4 font-normal tracking-normal leading-normal">
-              {/* {questions?.length} QUESTIONS */}
+              {questions?.length} QUESTIONS
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]">
           <div className="flex flex-col lg:flex-row items-start gap-4 w-full relative flex-[0_0_auto]">
@@ -180,7 +180,8 @@ const Comments = ({ taskDetails }) => {
             </div>
           </div>
         </div>
-        <div className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]">
+
+        {/* <div className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]">
           <div className="flex flex-col lg:flex-row items-start justify-between  w-full relative flex-[0_0_auto]">
             <div className="inline-flex items-center gap-[10px] relative flex-[0_0_auto]">
               <img
@@ -192,70 +193,22 @@ const Comments = ({ taskDetails }) => {
               />
               <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
                 <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
-                  {/* {postedUser?.name} */}
+                  {postedUser?.name}
                 </div>
                 <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
-                    {/* {postedUser?.label} */}
+                    {postedUser?.label}
                   </div>
                 </div>
               </div>
             </div>
             <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
-              {/* {timeCalculation(postedUser?.created_at)} hours ago */}
+              {timeCalculation(postedUser?.created_at)} hours ago
             </div>
           </div>
           <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
             <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-              {/* {postedUser?.text} */}
-            </p>
-            <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
-              <img
-                width={100}
-                height={100}
-                className="relative flex-[0_0_auto] w-5 h-5"
-                alt="Frame"
-                src={Report}
-              />
-              <div className="inline-flex items-center justify-center gap-[10px] px-5 py-2 bg-secondary rounded-[50px] relative flex-[0_0_auto]">
-                <button
-                  onClick={() => replySubmitHere(_id)}
-                  className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-white text-4 tracking-normal leading-normal"
-                >
-                  Reply
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[#f4f8fd] flex flex-col items-start gap-6 p-5  w-full bg-accent rounded-3xl relative flex-[0_0_auto]">
-          <div className="flex flex-col lg:flex-row items-start justify-between  w-full relative flex-[0_0_auto]">
-            <div className="inline-flex items-center gap-[10px] relative flex-[0_0_auto]">
-              <img
-                width={100}
-                height={100}
-                className="relative w-[43.27px] h-[44px] object-cover"
-                alt="Ellipse"
-                src={User}
-              />
-              <div className="inline-flex flex-col items-start gap-1 relative flex-[0_0_auto]">
-                <div className="relative w-fit mt-[-1.00px] [font-family:'Clash_Display-Semibold',Helvetica] font-normal text-gray-900 text-xl tracking-normal leading-normal">
-                  {/* {postedUser?.name} */}
-                </div>
-                <div className="inline-flex items-center justify-center gap-[10px] px-[10px] py-1 bg-primary rounded-[50px] overflow-hidden relative flex-[0_0_auto]">
-                  <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Bold',Helvetica] font-bold text-white text-[10px] tracking-normal leading-normal">
-                    {/* {postedUser?.label} */}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative w-fit mt-[-1.00px] [font-family:'DM_Sans-Medium',Helvetica] font-medium text-gray-900 text-4 text-right tracking-normal leading-[34px] whitespace-nowrap">
-              {/* {timeCalculation(postedUser?.created_at)} hours ago */}
-            </div>
-          </div>
-          <div className="flex flex-col items-start gap-[14px]  w-full relative flex-[0_0_auto]">
-            <p className="relative  mt-[-1.00px] [font-family:'DM_Sans-Regular',Helvetica] font-normal text-gray-900 text-4 tracking-normal leading-normal">
-              {/* {postedUser?.text} */}
+              {postedUser?.text}
             </p>
             <div className="inline-flex items-start gap-2 relative flex-[0_0_auto]">
               <img
@@ -275,7 +228,7 @@ const Comments = ({ taskDetails }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
