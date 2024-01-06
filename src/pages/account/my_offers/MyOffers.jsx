@@ -129,8 +129,6 @@ function MyOffers() {
       accessorKey: "taskId.what",
       header: "Task",
       cell: ({ row }) => {
-        console.log(row.original);
-
         return (
           <div className="capitalize flex items-center gap-4">
             <Avatar className="cursor-pointer rounded-none">

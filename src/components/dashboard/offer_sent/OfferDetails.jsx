@@ -8,52 +8,57 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { useEffect, useState } from "react";
 
+import CheckoutForm from "@/components/payment/CheckoutForm";
+import axios from "axios";
+const stripePromise = loadStripe(
+  "pk_test_51JyhgIBE09fAS3MBDoiKnzpbPMQSPZM5BP0sW4yshos9Tth8LmB3z9KZdUO9m05ljd1My2XIH2fc4rCDzVj4DilV00NhqihEXM"
+);
 export default function OfferDetails({ open, setOpen, modalData }) {
-  console.log(modalData);
+  // const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
+
+  // useEffect(() => {
+  //   fetch("/config").then(async (r) => {
+  //     const { publishableKey } = await r.json();
+  //     setStripePromise(loadStripe(publishableKey));
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:5000/create-payment-intent", {
+        amount: Number(modalData?.offer_amount || modalData?.taskId?.budget),
+      })
+      .then(async (result) => {
+        var { clientSecret } = await result.data;
+        setClientSecret(clientSecret);
+      });
+
+    // fetch("", {
+    //   method: "POST",
+    //   body: {  },
+    // }).then(async (result) => {
+    //   var { clientSecret } = await result.json();
+    //   setClientSecret(clientSecret);
+    // });
+  }, [modalData?.offer_amount, modalData?.taskId?.budget]);
+
+  const appearance = {
+    theme: "stripe",
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
+  // console.log(modalData);
+
   return (
     <div className="h-min overflow-y-auto ">
-      {/* <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="name" className="text-right">
-              Name
-            </label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <label htmlFor="username" className="text-right">
-              Username
-            </label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
-      </DialogContent> */}
-      {/* <header className="flex w-full h-6  px-4 md:px-6 bg-blue-500 text-white">
-        <Link to="#">
-          <MountainIcon className="h-6 w-6" />
-          <span className="sr-only">Service Portal</span>
-        </Link>
-      </header> */}
       <DialogHeader className={" px-4 md:px-6"}>
         <DialogTitle className="text-xl font-bold tracking-tighter sm:text-2xl">
           Service Proposal
@@ -91,7 +96,7 @@ export default function OfferDetails({ open, setOpen, modalData }) {
                 Description: {modalData?.body || "missing"}
               </p>
 
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold text-secondary">
                 Offer amount: ${modalData?.offer_amount || "missing"}
               </p>
             </div>
@@ -116,34 +121,38 @@ export default function OfferDetails({ open, setOpen, modalData }) {
               </p>
             </div> */}
           </div>
+          {clientSecret && (
+            <>
+              <Elements options={options} stripe={stripePromise}>
+                <CheckoutForm
+                  open={open}
+                  setOpen={setOpen}
+                  amount={
+                    Number(modalData?.offer_amount) ||
+                    Number(modalData?.taskId?.budget)
+                  }
+                />
+              </Elements>
+            </>
+          )}
           <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center mt-8">
-            <Button
+            {/* <Button
               className="inline-flex h-10 items-center justify-center rounded-md bg-green-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-400  "
               onClick={() => {
                 setOpen(!open);
               }}
             >
               Accept Proposal
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               className="text-gray-800 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900disabled:pointer-events-none disabled:opacity-50"
               onClick={() => {
                 setOpen(!open);
               }}
             >
               Decline Proposal
-            </Button>
+            </Button> */}
           </div>
-          {/* <DialogFooter>
-            <Button
-              type="submit"
-              onClick={() => {
-                // setOpen(!open);
-              }}
-            >
-              Save changes
-            </Button>
-          </DialogFooter> */}
         </div>
       </main>
     </div>
