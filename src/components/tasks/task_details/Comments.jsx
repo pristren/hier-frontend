@@ -3,13 +3,15 @@ import Report from "../../../assets/logo/report.svg";
 import Upload from "../../../assets/logo/upload.svg";
 import User from "../../../assets/logo/user.svg";
 import { taskData } from "@/helpers/tasks_data/TaskData";
+import { useSelector } from "react-redux";
+import axios from "axios";
 // import { taskData } from "../GlobalComponents/TaskData";
 // import Map from "../Map";
 
 const Comments = ({ taskDetails }) => {
   const position = [51.505, -0.09];
   const { offers, _id } = taskDetails;
-
+  const { user } = useSelector((state) => state.auth);
   // get hours
   const timeCalculation = (time) => {
     const today = new Date();
@@ -29,16 +31,19 @@ const Comments = ({ taskDetails }) => {
   //
   const [comment, setComment] = useState("");
 
-  const replySubmitHere = (id) => {
-    // console.log("id -> ", id);
-    // your function
-    setComment("");
-  };
-
-  // upload files
-  const handleUpload = (id) => {
-    // console.log("id -> ", id);
-    // your function
+  const replySubmitHere = async () => {
+    const res = await axios.post("http://localhost:5000/api/v1/comments", {
+      userId: user?._id,
+      taskId: _id,
+      text: comment,
+      parentCommentId: "6599b3396250bc184b6d13fe",
+    });
+    if (res.data?._id) {
+      // fetchSingleData();
+      alert("success");
+      // setOpen(false);
+      setComment("");
+    }
   };
 
   return (
@@ -155,14 +160,6 @@ const Comments = ({ taskDetails }) => {
               ></textarea>
               <div className="flex flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row justify-between items-start w-full gap-2">
                 <div className="inline-flex items-start gap-2 relative flex-[0_0_auto]">
-                  <img
-                    onClick={() => handleUpload(_id)}
-                    width={100}
-                    height={100}
-                    className="relative flex-[0_0_auto] w-[35px] h-[35px]"
-                    alt="Frame"
-                    src={Upload}
-                  />
                   <div
                     onClick={() => replySubmitHere(_id)}
                     className="inline-flex items-center justify-center gap-[10px] px-5 py-2 bg-secondary rounded-[50px] relative flex-[0_0_auto] cursor-pointer"
