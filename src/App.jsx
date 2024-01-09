@@ -20,6 +20,8 @@ import Messages from "./pages/message/Messages";
 import MyTasks from "./pages/account/my_tasks/MyTasks";
 import SettingProfile from "./pages/settings/profile/SettingProfile";
 import OffersSent from "./pages/account/offers_sent/OffersSent";
+import OrderAsBuyer from "./pages/account/buyer_order/OrderAsBuyer";
+import OrderAsTasker from "./pages/account/tasker_order/OrderAsTasker";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
             }
           >
             <Route index element={<Dashboard />} />
+            <Route path="orderAsBuyer" element={<OrderAsBuyer />} />
+            <Route path="orderAsTasker" element={<OrderAsTasker />} />
             <Route path="my_offers" element={<MyOffers />} />
 
             <Route path="offer_sent" element={<OffersSent />} />

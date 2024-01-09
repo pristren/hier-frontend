@@ -9,6 +9,14 @@ export default function DashboardLayout() {
       name: "Dashboard",
       pathname: "/dashboard",
     },
+    {
+      name: "Order as Buyer",
+      pathname: "/dashboard/orderAsBuyer",
+    },
+    {
+      name: "Order as Tasker",
+      pathname: "/dashboard/orderAsTasker",
+    },
 
     {
       name: "My Offers",
